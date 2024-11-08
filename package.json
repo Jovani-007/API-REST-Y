@@ -1,0 +1,22 @@
+{
+  "name": "api-y",
+  "version": "1.0.0",
+  "description": "API criada com base na aplicação front-end disponibilizada pela venturus",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "test",
+    "start": "npm run ./src/server.js",
+    "dev": "nodemon ./src/server.js"
+  },
+  "author": "Felipe Pedroso Cantanhede; Giovanni Alcaraz Gamis; Gustavo Pietro de Assis Silva",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.3",
+    "express": "^4.21.1",
+    "nodemon": "^3.1.7",
+    "sequelize": "^6.37.5",
+    "sqlite3": "^5.1.7"
+  }
+}
