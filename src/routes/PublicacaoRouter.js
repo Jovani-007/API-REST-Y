@@ -1,8 +1,7 @@
 import express from 'express';
 const router = express.Router();
-import controller from '../controller/PublicacaoController.js';
+import crud from '../controllers/CrudPublicacao.js';
 
-router.post('/', controller.criarPublicacao);
-router.get('/', controller.listarPublicacoes);
+//ROTAS
 
 export default router;

@@ -1,28 +1,28 @@
-import Usuario from '../models/Usuario.js';
+    import Usuario from '../models/Usuarios.js';
 
-const criarUsuario = async (request, response) => {
-    const { nome, email, senha, nascimento, nick } = request.body;
+    const criarUsuario = async (request, response) => {
+        const { nome, email, senha, nascimento, nick, imagem } = request.body;
 
-    if (!nome || !email || !senha || !nascimento || !nick) {
-        return response.status(400).json({ erro: 'Todos os campos são obrigatórios' });
-    }
-
-    const dataNascimento = new Date(nascimento);
-    const idade = new Date().getFullYear() - dataNascimento.getFullYear();
-    if (idade < 16) {
-        return response.status(400).json({ erro: 'A idade deve ser maior que 16 anos' });
-    }
-
-    try {
-        const novoUsuario = await Usuario.create({ nome, email, senha, nascimento, nick });
-        return response.status(201).json(novoUsuario);
-    } catch (error) {
-        if (error.name === 'SequelizeUniqueConstraintError') {
-            return response.status(400).json({ erro: "Email ou nick já está em uso" });
+        if (!nome || !email || !senha || !nascimento || !nick || !imagem) {
+            return response.status(400).json({ erro: 'Todos os campos são obrigatórios' });
         }
-        return response.status(500).json({ erro: 'Erro ao criar o usuário' });
+
+        const dataNascimento = new Date(nascimento);
+        const idade = new Date().getFullYear() - dataNascimento.getFullYear();
+        if (idade < 16) {
+            return response.status(400).json({ erro: 'A idade deve ser maior que 16 anos' });
+        }
+
+        try {
+            const novoUsuario = await Usuario.create({ nome, email, senha, nascimento, nick, imagem });
+            return response.status(201).json(novoUsuario);
+        } catch (error) {
+            if (error.name === 'SequelizeUniqueConstraintError') {
+                return response.status(400).json({ erro: "Email ou nick já está em uso" });
+            }
+            return response.status(500).json({ erro: 'Erro ao criar o usuário', detalhe: error.message });
+        }
     }
-}
 
 const listarUsuarios = async (request, response) => {
     const { search } = request.query;
@@ -45,7 +45,7 @@ const listarUsuarios = async (request, response) => {
         return response.status(200).json(usuarios);
 
     } catch (error) {
-        return response.status(500).json({ erro: 'Erro ao buscar usuários' })
+        return response.status(500).json({ erro: 'Erro ao buscar usuários', detalhe: error.message })
     }
 }
 
@@ -64,10 +64,10 @@ const detalharUsuario = async (request, response) => {
             email: usuario.email,
             nick: usuario.nick,
             imagem: usuario.imagem,
-            nascimento: usuario.nascimento.toISOString().split('T')[0],
+            nascimento: usuario.nascimento
         });
     } catch (error) {
-        return response.status(500).json({ erro: 'Erro ao buscar o usuário' });
+        return response.status(500).json({ erro: 'Erro ao buscar o usuário', detalhe: error.message });
     }
 }
 
@@ -103,6 +103,12 @@ const atualizarUsuario = async (request, response) => {
         usuario.nome = nome || usuario.nome;
         usuario.email = email || usuario.email;
         usuario.nick = nick || usuario.nick;
+        
+        const updatedUsuario = await usuario.save();
+
+        if (!updatedUsuario) {
+            return response.status(400).json({ erro: 'Falha ao atualizar o usuário' });
+        }
 
         return response.status(200).json({
             id: usuario.id,
@@ -110,8 +116,8 @@ const atualizarUsuario = async (request, response) => {
             email: usuario.email,
             nick: usuario.nick,
             imagem: usuario.imagem,
-            nascimento: usuario.nascimento.toISOString().split('T')[0],
-        })
+            nascimento: usuario.nascimento,
+        });
     } catch (error) {
         return response.status(500).json({ erro: 'Erro ao atualizar o usuario' });
     }

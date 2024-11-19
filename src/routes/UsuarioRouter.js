@@ -1,10 +1,11 @@
 import express from 'express';
 const router = express.Router();
-import controller from '../controller/UsuarioController.js';
+import crud from '../controllers/CrudUsuario.js';
 
-router.post('/', controller.criarUsuario);
-router.get('/', controller.listarUsuarios);
-router.get('/:usuario_id', controller.detalharUsuario);
-router.patch('/:usuario_id', controller.atualizarUsuario);
+//ROTAS
+router.post('/', crud.criarUsuario);
+router.get('/', crud.listarUsuarios);
+router.get('/:usuario_id', crud.detalharUsuario);
+router.patch('/:usuario_id', crud.atualizarUsuario);
 
 export default router;

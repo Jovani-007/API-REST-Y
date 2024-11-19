@@ -1,7 +1,7 @@
 import express from 'express';
 const router = express.Router();
-import controller from '../controller/ComentarioController.js';
+import crud from '../controllers/CrudComentario.js';
 
-router.post('/', controller.criarComentario);
+//ROTAS
 
 export default router;
