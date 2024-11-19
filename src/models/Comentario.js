@@ -1,5 +1,7 @@
 import { DataTypes } from "sequelize";
 import sequelize from '../config/database.js';
+import Usuario from "./Usuario.js";
+import Publicacao from "./Publicacao.js";
 
 const Comentario = sequelize.define('Comentario', {
     id: {
@@ -11,16 +13,16 @@ const Comentario = sequelize.define('Comentario', {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-            model: 'Publicacao', 
-            key: 'id',           
+            model: 'Publicacoes',
+            key: 'id'
         }
     },
     usuario_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-            model: 'Usuario',   
-            key: 'id',           
+            model: 'Usuarios',
+            key: 'id'
         }
     },
     comentario: {
@@ -28,9 +30,15 @@ const Comentario = sequelize.define('Comentario', {
         allowNull: false,
     }
 }, {
-    tableName: 'Comentarios', 
+    sequelize,
+    modelName: 'Comentario',
+    tableName: 'comentarios', 
     timestamps: true,         
 });
+
+
+Comentario.belongsTo(Usuario, { foreignKey: 'usuario_id', as: 'usuario' });
+Comentario.belongsTo(Publicacao, { foreignKey: 'publicacao_id', as: 'publicacao' });
 
 (async () => {
     await sequelize.sync();

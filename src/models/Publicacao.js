@@ -1,5 +1,6 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../config/database.js';
+import Usuario from './Usuario.js';
 
 const Publicacao = sequelize.define('Publicacao', {
     id: {
@@ -12,10 +13,21 @@ const Publicacao = sequelize.define('Publicacao', {
         allowNull: false,
     },
     usuario_id: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,  
         allowNull: false,
+        references: {
+            model: 'Usuarios',  
+            key: 'id'           
+        }
     }
+}, {
+    sequelize,
+    modelName: 'Publicacao',
+    tableName: 'publicacoes', 
+    timestamps: true          
 });
+
+Publicacao.belongsTo(Usuario, { foreignKey: 'usuario_id', as: 'usuario' });
 
 (async () => {
     await sequelize.sync();
