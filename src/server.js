@@ -1,5 +1,5 @@
 import express from 'express';
-import sequelize from './config/database.js';
+import sequelize from './database/database.js';
 import bodyParser from 'body-parser';
 import usuarioRouter from './routes/UsuarioRouter.js';
 import publicacaoRouter from './routes/PublicacaoRouter.js';
