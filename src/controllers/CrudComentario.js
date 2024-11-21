@@ -12,7 +12,7 @@ const criarComentario = async (request, response) => {
         if (!userExistente) {
             return response.status(400).json({ erro: 'Usuário não encontrado' });
         }
-        if (!publExistenteExistente) {
+        if (!publExistente) {
             return response.status(400).json({ erro: 'Publicação não encontrada' });
         }
 
