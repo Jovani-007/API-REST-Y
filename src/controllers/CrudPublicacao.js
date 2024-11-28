@@ -38,6 +38,7 @@ const listarPublicacoes = async (request, response) => {
             nick: publicacao.Usuario.nick,
             imagem: publicacao.Usuario.imagem,
             qtd_likes: publicacao.qtd_likes,
+            criado_em: publicacao.criado_em
         }));
 
         return response.status(200).json({

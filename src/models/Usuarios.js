@@ -33,15 +33,15 @@ Usuario.init(
     },
     imagem: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     }
   },
   {
     sequelize,
     modelName: "Usuarios",
-    updatedAt: false,
     createdAt: "criado_em",
-    timestamps: false
+    timestamps: false,
+    updatedAt: false
   }
 );
 

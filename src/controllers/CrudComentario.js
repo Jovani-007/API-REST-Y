@@ -44,27 +44,28 @@ const listarComentarios = async (request, response) => {
             where: { publicacao_id },
             include: {
                 model: Usuario,
-                attributes: ['id', 'nick', 'imagem']
-            }
+                attributes: ['id', 'nick', 'imagem'],
+            },
         });
 
-        const lista = comentarios.map(comentario => ({
+        const lista = comentarios.map((comentario) => ({
             comentario_id: comentario.id,
-            comentario: comentario,
+            comentario: comentario.comentario,
             usuario_id: comentario.Usuario.id,
-            nick: comentario.Usuario.imagem,
-            criado_em: comentario.createdAt
+            nick: comentario.Usuario.nick, 
+            imagem: comentario.Usuario.imagem,
+            // criado_em: comentario.criado_em,
         }));
 
         return response.status(200).json({
             data: lista,
-            total: lista.length
-        })
+            total: lista.length,
+        });
     } catch (error) {
-        return response.status(500).json({ erro: 'Erro ao buscar os comentários', detalhe: error.message});
+        return response.status(500).json({ erro: 'Erro ao buscar os comentários', detalhe: error.message });
     }
-    
-}
+};
+
 
 const deletarComentário = async (request, response) => {
     const { comentario_id, usuario_id } = request.body;

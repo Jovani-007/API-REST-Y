@@ -1,9 +1,9 @@
     import Usuario from '../models/Usuarios.js';
 
     const criarUsuario = async (request, response) => {
-        const { nome, email, senha, nascimento, nick, imagem } = request.body;
+        const { nome, email, senha, nascimento, nick } = request.body;
 
-        if (!nome || !email || !senha || !nascimento || !nick || !imagem) {
+        if (!nome || !email || !senha || !nascimento || !nick) {
             return response.status(400).json({ erro: 'Todos os campos são obrigatórios' });
         }
 
@@ -14,7 +14,7 @@
         }
 
         try {
-            const novoUsuario = await Usuario.create({ nome, email, senha, nascimento, nick, imagem });
+            const novoUsuario = await Usuario.create({ nome, email, senha, nascimento, nick });
             return response.status(201).json(novoUsuario);
         } catch (error) {
             if (error.name === 'SequelizeUniqueConstraintError') {

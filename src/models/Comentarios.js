@@ -34,9 +34,13 @@ Comentarios.init(
   {
     sequelize,
     modelName: "Comentarios",
-    timestamps: false
+    createdAt: "criado_em",
+    //timestamps: true, 
+    timestamps: false,       
+    updatedAt: false,       
   }
 );
+
 
 Comentarios.belongsTo(Usuarios, { foreignKey: "usuario_id" });
 Comentarios.belongsTo(Publicacoes, { foreignKey: "publicacao_id" });
