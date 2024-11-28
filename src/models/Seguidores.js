@@ -24,6 +24,7 @@ Seguidores.init(
   {
     sequelize,
     modelName: "Seguidores",
+    timestamps: false
   }
 );
 Seguidores.belongsTo(Usuarios, { foreignKey: "usuario_id" });

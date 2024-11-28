@@ -52,7 +52,8 @@ const listarComentarios = async (request, response) => {
             comentario_id: comentario.id,
             comentario: comentario,
             usuario_id: comentario.Usuario.id,
-            nick: comentario.Usuario.imagem
+            nick: comentario.Usuario.imagem,
+            criado_em: comentario.createdAt
         }));
 
         return response.status(200).json({

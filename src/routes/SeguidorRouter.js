@@ -8,5 +8,4 @@ router.delete('/', crud.deixarSeguir);
 router.get('/:usuario_id', crud.listarSeguidores);
 router.get('/seguindo/:usuario_id', crud.listarSeguindo);
 
-
 export default router;

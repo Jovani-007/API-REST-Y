@@ -1,7 +1,6 @@
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../database/database.js";
 import Usuarios from "./Usuarios.js";
-// import Comentarios from "./Comentarios.js";
 
 class Publicacoes extends Model {}
 
@@ -30,10 +29,12 @@ Publicacoes.init(
   {
     sequelize,
     modelName: "Publicacoes",
+    createdAt: "criado_em",
+    timestamps: true,
+    updatedAt: false
   }
 );
 
 Publicacoes.belongsTo(Usuarios, { foreignKey: "usuario_id" });
-// Publicacoes.hasMany(Comentarios, { foreignKey: 'publicacao_id' });
 
 export default Publicacoes;

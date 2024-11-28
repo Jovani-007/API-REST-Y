@@ -34,10 +34,12 @@ Comentarios.init(
   {
     sequelize,
     modelName: "Comentarios",
+    timestamps: false
   }
 );
 
 Comentarios.belongsTo(Usuarios, { foreignKey: "usuario_id" });
 Comentarios.belongsTo(Publicacoes, { foreignKey: "publicacao_id" });
+Publicacoes.hasMany(Comentarios, { foreignKey: 'publicacao_id' });
 
 export default Comentarios;
