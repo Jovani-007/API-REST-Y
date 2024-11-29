@@ -33,6 +33,7 @@ Usuario.init(
     },
     imagem: {
       type: DataTypes.STRING,
+      defaultValue: "https://cdn-icons-png.flaticon.com/128/149/149071.png",
       allowNull: true,
     }
   },
@@ -40,6 +41,7 @@ Usuario.init(
     sequelize,
     modelName: "Usuarios",
     createdAt: "criado_em",
+    //timestamps: true,
     timestamps: false,
     updatedAt: false
   }

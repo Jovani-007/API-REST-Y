@@ -30,8 +30,7 @@ Publicacoes.init(
     sequelize,
     modelName: "Publicacoes",
     createdAt: "criado_em",
-    //timestamps: true,
-    timestamps: false,
+    timestamps: true,
     updatedAt: false
   }
 );

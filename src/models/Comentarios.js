@@ -29,14 +29,13 @@ Comentarios.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       defaultValue: 0,
-    },
+    }
   },
   {
     sequelize,
     modelName: "Comentarios",
     createdAt: "criado_em",
-    //timestamps: true, 
-    timestamps: false,       
+    timestamps: false,     
     updatedAt: false,       
   }
 );

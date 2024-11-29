@@ -27,7 +27,7 @@ const listarPublicacoes = async (request, response) => {
         const publicacoes = await Publicacao.findAll({
             include: {
                 model: Usuario,
-                attributes: ['id', 'nick', 'imagem'] 
+                attributes: ['nick', 'imagem'] 
             }
         });
 
@@ -36,7 +36,7 @@ const listarPublicacoes = async (request, response) => {
             publicacao: publicacao.publicacao,
             usuario_id: publicacao.usuario_id,
             nick: publicacao.Usuario.nick,
-            imagem: publicacao.Usuario.imagem,
+            imagem: publicacao.Usuario.imagem || "https://cdn-icons-png.flaticon.com/128/149/149071.png",
             qtd_likes: publicacao.qtd_likes,
             criado_em: publicacao.criado_em
         }));
@@ -84,7 +84,7 @@ const listarPubCC = async (request, response) => {
             publicacao: publicacao.publicacao,
             usuario_id: publicacao.usuario_id,
             nick: publicacao.Usuario.nick,
-            imagem: publicacao.Usuario.imagem,
+            imagem: publicacao.Usuario.imagem || "https://cdn-icons-png.flaticon.com/128/149/149071.png",
             qtd_likes: publicacao.qtd_likes,
             qtd_comentarios: parseInt(publicacao.get('qtd_comentarios')) || 0,
             criado_em: publicacao.criado_em,

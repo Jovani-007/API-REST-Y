@@ -97,7 +97,7 @@ const listarSeguidores = async (request, response) => {
                 seguidor_id: seguidor.id,
                 nome: seguidor.Usuario.nome,
                 nick: seguidor.Usuario.nick,
-                imagem: seguidor.Usuario.imagem,
+                imagem: seguidor.Usuario.imagem || "https://cdn-icons-png.flaticon.com/128/149/149071.png",
             })),
             total: seguidores.count,
             currentPage: parseInt(page),
@@ -131,7 +131,7 @@ const listarSeguindo = async (request, response) => {
                 usuario_id: usuario.Usuario.id,
                 nome: usuario.Usuario.nome,
                 nick: usuario.Usuario.nick,
-                imagem: usuario.Usuario.imagem,
+                imagem: usuario.Usuario.imagem || "https://cdn-icons-png.flaticon.com/128/149/149071.png",
             })),
             total: seguindo.count,
         });

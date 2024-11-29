@@ -53,8 +53,8 @@ const listarComentarios = async (request, response) => {
             comentario: comentario.comentario,
             usuario_id: comentario.Usuario.id,
             nick: comentario.Usuario.nick, 
-            imagem: comentario.Usuario.imagem,
-            // criado_em: comentario.criado_em,
+            imagem: comentario.Usuario.imagem || "https://cdn-icons-png.flaticon.com/128/149/149071.png",
+            criado_em: new Date(),
         }));
 
         return response.status(200).json({

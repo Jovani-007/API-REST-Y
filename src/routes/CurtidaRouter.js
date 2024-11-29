@@ -3,9 +3,9 @@ const router = express.Router();
 import crud from '../controllers/CrudCurtida.js';
 
 //ROTAS
-router.post('/publicacoes', crud.adicionarCurtidaPub);
-router.delete('/publicacoes', crud.removerCurtidaPub);
-router.post('/comentarios', crud.adicionarCurtidaCom);
-router.delete('/comentarios', crud.removerCurtidaCom);
+router.post('/publicacao', crud.adicionarCurtidaPub);
+router.delete('/publicacao', crud.removerCurtidaPub);
+router.post('/comentario', crud.adicionarCurtidaCom);
+router.delete('/comentario', crud.removerCurtidaCom);
 
 export default router;

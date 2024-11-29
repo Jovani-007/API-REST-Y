@@ -11,7 +11,7 @@ const adicionarCurtidaPub = async (request, response) => {
     try {
         const publicacao = await Publicacao.findByPk(publicacao_id);
         if (!publicacao) {
-            return response.status(400).json({ erro: 'Publicação não encontrada' });
+            return response.status(400).json({ erro: 'Publicação não encontrada', detalhe: error.message });
         }
 
         publicacao.qtd_likes += 1;
@@ -81,7 +81,6 @@ const removerCurtidaCom = async (request, response) => {
         if (!comentario) {
             return response.status(400).json({ erro: 'Publicação não encontrada' });
         }
-
         if (comentario.qtd_likes > 0) {
             comentario.qtd_likes -= 1;
             await comentario.save();
